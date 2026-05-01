@@ -4,41 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HedShop</title>
+    <!-- Подключаем иконки Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-    <!-- Подключаем API Телеграма -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div id="app">
-        <!-- Заголовок -->
+        <!-- Верхняя панель -->
         <header>
-            <div class="logo">HedShop</div>
-            <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+            <div class="logo-wrapper">
+                <div class="logo-icon">H</div>
+                <div class="logo-text">HedShop</div>
+            </div>
+            <i class='bx bx-search top-icon'></i>
         </header>
 
-        <!-- Каталог товаров -->
-        <div id="catalog" class="page active">
-            <h2>Все товары</h2>
-            <div class="products-grid" id="products-container">
-                <!-- Товары генерируются через JS -->
+        <!-- Страница Каталога -->
+        <div id="page-catalog" class="page active">
+            <div class="page-header">
+                <h2>Все товары</h2>
+                <p class="subtitle" id="items-count">8 товаров доступно</p>
             </div>
-        </div>
-
-        <!-- Корзина -->
-        <div id="cart" class="page">
-            <h2>Корзина</h2>
-            <div id="cart-items"></div>
-            <div class="cart-summary">
-                <div class="total-row">
-                    <span>Итого:</span>
-                    <span id="cart-total-price">0 ₽</span>
+            
+            <div class="filters">
+                <div class="filter-box"><i class='bx bx-search'></i> Поиск товаров...</div>
+                <div class="filter-controls">
+                    <div class="btn-secondary">По умолчанию</div>
+                    <div class="btn-secondary"><i class='bx bx-slider-alt'></i> Фильтры</div>
                 </div>
-                <button class="pay-btn" onclick="checkout()">Перейти к оплате ➔</button>
-                <button class="back-btn" onclick="toggleCart()">Назад в каталог</button>
+            </div>
+
+            <div class="products-grid" id="products-container">
+                <!-- Сюда JS вставит карточки -->
             </div>
         </div>
-    </div>
 
+        <!-- Страница Корзины -->
+        <div id="page-cart" class="page">
+            <div class="cart-empty" id="cart-empty">
+                <i class='bx bx-cart cart-empty-icon'></i>
+                <h2>Ваша корзина пуста</h2>
+                <p>Загляните в каталог и найдите то, что вам понравится!</p>
+                <button class="btn-primary" onclick="switchTab('catalog')">Перейти в каталог <i class='bx bx-right-arrow-alt'></i></button>
+            </div>
+            
+            <div id="cart-content" style="display: none;">
+                <h2>Корзина</h2>
+                <div id="cart-items"></div>
+                <div class="cart-summary">
+                    <div class="total-row">
+                        <span>Итого:</span>
+                        <span id="cart-total-price" class="total-price-text">0 ₽</span>
+                    </div>
+                    <button class="btn-primary" onclick="checkout()">Перейти к оплате <i class='bx bx-right-arrow-alt'></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижнее навигационное меню -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="switchTab('home')">
+                <i class='bx bx-home-alt'></i>
+                <span>Главная</span>
+            </div>
+            <div class="nav-item active" onclick="switchTab('catalog')" id="tab-catalog">
+                <i class='bx bx-search'></i>
+                <span>Каталог</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('cart')" id="tab-cart">
+                <div class="icon-wrapper">
+                    <i class='bx bx-cart'></i>
+                    <span class="badge" id="cart-badge" style="display: none;">0</span>
+                </div>
+                <span>Корзина</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('profile')">
+                <i class='bx bx-user'></i>
+                <span>Профиль</span>
+            </div>
+        </nav>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
