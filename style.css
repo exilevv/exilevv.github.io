@@ -1,0 +1,53 @@
+:root {
+    --bg-color: #050505;
+    --card-bg: #0f0f0f;
+    --text-color: #ececec;
+    --accent: #1e1e1e;
+    --border-color: #1a1a1a;
+    --btn-blue: #2A64F6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+body { background-color: var(--bg-color); color: var(--text-color); }
+
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 20px; background-color: var(--card-bg); border-bottom: 1px solid var(--border-color);
+}
+
+.logo { font-weight: bold; font-size: 18px; }
+.cart-icon { cursor: pointer; background: var(--accent); padding: 5px 10px; border-radius: 8px; }
+
+.page { display: none; padding: 20px; }
+.page.active { display: block; }
+
+h2 { margin-bottom: 20px; font-size: 20px; font-weight: 600; }
+
+.products-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+/* Карточка товара */
+.product-card {
+    background-color: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 12px; padding: 15px; transition: transform 0.2s, border-color 0.2s;
+}
+.product-card:hover { transform: translateY(-2px); border-color: #333; }
+
+.product-info h3 { font-size: 16px; margin-bottom: 5px; }
+.product-price { color: #888; margin-bottom: 15px; font-size: 14px; }
+
+button {
+    width: 100%; border: none; padding: 12px; border-radius: 8px;
+    font-size: 15px; font-weight: bold; cursor: pointer; color: white;
+}
+
+.add-btn { background-color: var(--accent); border: 1px solid #333; }
+.pay-btn { background-color: var(--btn-blue); margin-top: 15px; }
+.back-btn { background-color: transparent; border: 1px solid var(--border-color); margin-top: 10px; }
+.out-of-stock-btn { background-color: #111; color: #555; cursor: not-allowed; }
+
+.cart-item {
+    display: flex; justify-content: space-between; padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 20px; }
